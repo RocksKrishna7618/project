@@ -1,5 +1,5 @@
-from pyrogram import filters
+from pyrogram import filters, Client
 
-@app.on_message(filters.command("start")
-async def _(app, message):
+@Client.on_message(filters.command("start"))
+async def _(app: Client, message):
       await message.reply_text("Hi I'm testing bot")
