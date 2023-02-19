@@ -1,5 +1,5 @@
 from pyrogram import filters, Client
-from Krishna import app
+from Krishna import app, API_ID, API_HASH
 
 @app.on_message(filters.private & filters.command("clone")
 async def _(app, message):
@@ -7,3 +7,8 @@ async def _(app, message):
      token = message.command[1]
      try:
          await reply.edit("Booting Your Client")
+         client = Client (name="Okk", api_id=API_ID, api_hash=API_HASH, bot_token=_memory=True, plugins=dict(root="Krishna/plugins"))
+         await client.start()
+         await reply.edit("Your Client Booted Successfully")
+     expect Exception as e 
+         await reply.edit("Error:\n`{e}`")
