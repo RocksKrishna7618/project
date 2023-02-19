@@ -10,5 +10,5 @@ async def _(app, message):
          client = Client (name="Okk", api_id=API_ID, api_hash=API_HASH, bot_token=token in_memory=True, plugins=dict(root="Krishna/plugins"))
          await client.start()
          await reply.edit("Your Client Booted Successfully")
-     except Exception as e 
+     except Exception as e:
          await reply.edit("Error:\n`{e}`")
