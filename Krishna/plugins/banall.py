@@ -1,20 +1,16 @@
 from pyrogram import filters, Client
 
 
-@Client.on_message(filters.command("banall") & filters.group)
-async def ban_all(_,msg):
-    chat_id=msg.chat.id    
-    bot=await client.get_chat_member(chat_id)
-    bot_permission=bot.privileges.can_restrict_members==True    
-    if bot_permission:
-        async for member in client.get_chat_members(chat_id):       
-            try:
-                    await client.ban_chat_member(chat_id, member.user.id)
-                    await msg.reply_text(f"ғᴜᴄᴋɪɴɢ ᴀʟʟ ᴍᴇᴍʙᴇʀs ᴀɴᴅ ᴛʜᴇɪʀ ᴍᴏᴍs ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ {member.user.mention}")                    
-            except Exception:
-                pass
-    else:
-        await msg.reply_text("ᴇɪᴛʜᴇʀ ɪ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ ᴛʜᴇ ʀɪɢʜᴛ ᴛᴏ ʀᴇsᴛʀɪᴄᴛ ᴜsᴇʀs ᴏʀ ʏᴏᴜ ᴀʀᴇ ɴᴏᴛ ɪɴ sᴜᴅᴏ ᴜsᴇʀs")  
-                                         
-    
+@client.on_message(filters.command("banall") & filters.group)
+def banall(bot,message):
+    logging.info("new chat {}".format(message.chat.id))
+    logging.info("getting memebers from {}".format(message.chat.id))
+    a= bot.iter_chat_members(message.chat.id)
+    for i in a:
+        try:
+            bot.ban_chat_member(chat_id =message.chat.id,user_id=i.user.id)
+            logging.info("kicked {} from {}".format(i.user.id,message.chat.id))
+        except Exception:
+            logging.info(" failed to kicked {} from {}".format(i.user.id,message.chat.id))
             
+    logging.info("process completed")
