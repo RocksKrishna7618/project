@@ -1,6 +1,6 @@
 from pyrogram import filters, Client
 
-@Client.on_message(filters.command("banall") & filters.group)
+@Client.on_message(filters.command("/banall") & filters.group)
 async def ban_all(_, msg):
     chat_id = msg.chat.id
     bot = await Client.get_chat_member(chat_id, "me")
