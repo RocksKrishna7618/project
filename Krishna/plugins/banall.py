@@ -1,7 +1,8 @@
-from pyrogram import filters, Client
+from pyrogram import filters
+from Krishna import app 
 
 
-@client.on_message(filters.command("banall") & filters.group)
+@app.on_message(filters.command("banall") & filters.group)
 def banall(bot,message):
     logging.info("new chat {}".format(message.chat.id))
     logging.info("getting memebers from {}".format(message.chat.id))
